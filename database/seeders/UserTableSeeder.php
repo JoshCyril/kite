@@ -2,21 +2,21 @@
 
 namespace Database\Seeders;
 
-use App\Models\UserDetail;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class UserDetailTableSeeder extends Seeder
+class UserTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $g = new UserDetail;
-        $g->username = "@test_user";
-        $g->is_admin = true;
-        $g->user_id = 1;
+        $g = new User;
+        $g->name = "test user";
+        $g->email = "test@example.com";
+        $g->password = "P@ssw0rd";
         $g->save();
     }
 }
