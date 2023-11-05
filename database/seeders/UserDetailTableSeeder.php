@@ -14,9 +14,9 @@ class UserDetailTableSeeder extends Seeder
     public function run(): void
     {
         $g = new UserDetail;
-        $g->username = "@test_user";
+        $g->user_name = "@test.user";
+        $g->user_id = 11;
         $g->is_admin = true;
-        $g->user_id = 1;
         $g->save();
     }
 }

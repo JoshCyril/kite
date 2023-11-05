@@ -16,8 +16,14 @@ class UserDetailFactory extends Factory
      */
     public function definition(): array
     {
+
         return [
-            //
+            'user_name' => '@' . fake()->unique()->userName(), // @testuser
+            'is_admin' => fake()->boolean(20),
+            'user_id' => fake()->unique()
+                ->randomElement(
+                    \App\Models\User::pluck('id', 'id')->toArray()
+                ) // pick id from Users table randomly
         ];
     }
 }

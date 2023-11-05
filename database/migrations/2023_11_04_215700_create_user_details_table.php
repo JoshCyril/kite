@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('user_details', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
-            $table->string('username', 50)->unique();
+            $table->string('user_name', 50)->unique();
             $table->boolean('is_admin');
             $table->timestamps();
 
