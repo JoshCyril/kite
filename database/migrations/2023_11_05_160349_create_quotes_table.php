@@ -13,15 +13,17 @@ return new class extends Migration
     {
         Schema::create('quotes', function (Blueprint $table) {
             $table->id();
-            $table->string('content', 2048);
-            $table->longText('explanation');
-            $table->string('cover_image', 2048)->nullable();
+            $table->bigInteger('user_detail_id')->unsigned();
+            $table->string('content', 124);
+            $table->string('explanation',256);
+            $table->string('cover_image', 255)->nullable();
             $table->string('author', 25);
             $table->datetime('quoted_at');
             $table->timestamps();
 
-            // $table->foreign('user_detail_id')->references('id')->on('user_details')
-            //     ->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_detail_id')->references('id')
+                ->on('user_details')->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 

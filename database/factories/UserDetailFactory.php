@@ -23,7 +23,7 @@ class UserDetailFactory extends Factory
             'user_id' => fake()->unique()
                 ->randomElement(
                     \App\Models\User::pluck('id', 'id')->toArray()
-                ) // picks id from Users table randomly
+                ) // picks unique id from Users table randomly
         ];
     }
 }
