@@ -23,7 +23,7 @@ class QuoteFactory extends Factory
             'author' => fake()->firstName(),
             'quoted_at' => now(),
             'user_detail_id' => fake()->randomElement(
-                \App\Models\User::pluck('id', 'id')->toArray()
+                \App\Models\UserDetail::pluck('id', 'id')->toArray()
             ) // picks id from UserDetails table randomly
         ];
     }
