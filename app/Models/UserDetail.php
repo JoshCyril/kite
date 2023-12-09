@@ -21,7 +21,12 @@ class UserDetail extends Model
 
 
     public function quotes(): HasMany
-    { 
+    {
         return $this->hasMany(Quote::class);
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comments::class);
     }
 }

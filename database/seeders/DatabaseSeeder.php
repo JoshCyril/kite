@@ -17,26 +17,19 @@ class DatabaseSeeder extends Seeder
         // Model Factory
         \App\Models\User::factory(10)
             ->create();
-        // \App\Models\UserDetail::factory(10)
-        //     ->has(\App\Models\Quote::factory(2))
-        //     ->create();
 
         \App\Models\UserDetail::factory(10)
             ->create();
 
-        \App\Models\Category::factory(7)
-            ->create();
-
-        \App\Models\Quote::factory(15)
+        \App\Models\Quote::factory(10)
             ->hasAttached(
                 \App\Models\Category::factory(2)
             )
+
+           ->create();
+
+        \App\Models\Comment::factory(12)
             ->create();
 
-
-        // Seeder
-        // $this->call(UserTableSeeder::class);
-        // $this->call(UserDetailTableSeeder::class);
-        // $this->call(QuoteTableSeeder::class);
     }
 }
