@@ -3,7 +3,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-# Kite
+# 🪁 Kite
 
 A new site to fly your `quotes` through the web.
 
@@ -22,4 +22,7 @@ A new site to fly your `quotes` through the web.
 - user_details
 - users
 
-![DB UML](https://i.imgur.com/vWAE2Ka.png)
+[DB UML](https://i.imgur.com/vWAE2Ka.png)
+
+Planned UML diagram ![Draw.io](http://draw.io/)
+[Draw io](https://i.imgur.com/YCefbgc.png)
