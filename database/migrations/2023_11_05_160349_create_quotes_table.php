@@ -16,7 +16,6 @@ return new class extends Migration
             $table->bigInteger('user_detail_id')->unsigned();
             $table->string('content', 124);
             $table->string('explanation',256);
-            $table->string('cover_image', 255)->nullable();
             $table->string('author', 25);
             $table->datetime('quoted_at');
             $table->timestamps();

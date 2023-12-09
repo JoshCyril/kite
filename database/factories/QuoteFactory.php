@@ -19,7 +19,6 @@ class QuoteFactory extends Factory
         return [
             'content' => fake()->realTextBetween(64, 124),
             'explanation' => fake()->realTextBetween(124, 256),
-            'cover_image' => fake()->optional()->imageUrl(),
             'author' => fake()->firstName(),
             'quoted_at' => now(),
             'user_detail_id' => fake()->randomElement(
