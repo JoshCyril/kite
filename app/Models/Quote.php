@@ -20,6 +20,6 @@ class Quote extends Model
 
     public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(Role::class);
+        return $this->belongsToMany(Category::class);
     }
 }
