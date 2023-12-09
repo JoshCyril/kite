@@ -22,7 +22,7 @@ A new site to fly your `quotes` through the web.
 - user_details
 - users
 
-[DB UML](https://i.imgur.com/vWAE2Ka.png)
+![DB UML](https://i.imgur.com/vWAE2Ka.png)
 
 Planned UML diagram ![Draw.io](http://draw.io/)
-[Draw io](https://i.imgur.com/YCefbgc.png)
+![Draw io](https://i.imgur.com/YCefbgc.png)
