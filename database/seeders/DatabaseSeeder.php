@@ -25,10 +25,13 @@ class DatabaseSeeder extends Seeder
             ->hasAttached(
                 \App\Models\Category::factory(2)
             )
-
            ->create();
 
         \App\Models\Comment::factory(12)
+            ->create();
+
+
+        \App\Models\Image::factory(5)
             ->create();
 
     }
