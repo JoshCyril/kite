@@ -14,6 +14,6 @@ class Comment extends Model
 
     public function quotes(): BelongsTo
     {
-        return $this->belongsTo(Comments::class);
+        return $this->belongsTo(Quote::class);
     }
 }
