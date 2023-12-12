@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('author', 25);
             $table->datetime('quoted_at');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_detail_id')->references('id')
                 ->on('user_details')->onDelete('cascade')
