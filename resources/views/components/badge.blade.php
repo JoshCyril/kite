@@ -9,13 +9,13 @@
     default => 'bg-purple-100'};
 
     $txClr = match($bgColor){
-    'purple' => 'text-purple-800',
-    'blue' => 'text-blue-800',
-    'red' => 'text-red-800',
-    'green' => 'text-green-800',
-    default => 'text-purple-800'};
+    'purple' => 'text-purple-900',
+    'blue' => 'text-blue-900',
+    'red' => 'text-red-900',
+    'green' => 'text-green-900',
+    default => 'text-purple-900'};
 @endphp
 
-<button  {{ $attributes }} class="px-3 py-1 text-base {{ $bgClr }} {{ $txClr }} rounded-2xl">
+<button  {{ $attributes }} class="{{ $bgClr }} {{ $txClr }} px-3 py-1 text-base  rounded-2xl">
     {{ $slot }}
 </button>

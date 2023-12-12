@@ -10,7 +10,7 @@
                     {{ __('Home') }}
                 </x-nav-link>
 
-                <x-nav-link href="{{ route('quote.index') }}" :active="request()->routeIs('quote.index')">
+                <x-nav-link href="{{ route('quotes.index') }}" :active="request()->routeIs('quotes.index')">
                     {{ __('Quote') }}
                 </x-nav-link>
 

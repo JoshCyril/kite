@@ -11,9 +11,11 @@ class QuoteController extends Controller
      */
     public function index()
     {
-        return view('quotes.index',
+        return view(
+        'quotes.index',
         [
-            'categories' => Category::whereHas('quotes', function($query){
+            'categories' => Category::
+            whereHas('quotes', function($query){
                 $query->quoted();
             })->take(10)->get()
         ]

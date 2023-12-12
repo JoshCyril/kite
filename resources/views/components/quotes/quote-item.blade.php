@@ -17,7 +17,12 @@
             <div class="flex items-center justify-between mt-3 article-actions-bar">
                 <div class="flex gap-x-2">
                     @foreach ($quote->categories as $category)
-                        <x-badge :bgColor="$category->bg_color">{{ $category->name }}</x-badge>
+                        <x-badge
+                            wire:navigate
+                            href="{{ route('quotes.index',['category'=> $category->slug]) }}"
+                            :bgColor="$category->bg_color">
+                                {{ $category->name }}
+                        </x-badge>
                     @endforeach
                     <div class="flex items-center space-x-4">
                         <span class="text-sm text-gray-500">{{ $quote->getReadingTime() }} min read</span>

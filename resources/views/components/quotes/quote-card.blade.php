@@ -1,17 +1,28 @@
 @props(['quote'])
-<div class="">
-    <a href="http://127.0.0.1:8000/blog/laravel-34">
+<div {{ $attributes }}>
+    <a href="#">
         <div>
             <img class="w-full rounded-xl"
-                src="{{ $quote->cover_image }}">
+                src="{{ $quote->getCoverImage() }}">
         </div>
     </a>
     <div class="mt-3">
-        <div class="flex items-center mb-2">
-            <a href="#" class="px-3 py-1 mr-3 text-sm text-white bg-red-600 rounded-xl">
-                Laravel
-            </a>
-            <p class="text-sm text-gray-500">{{ $quote->quoted_at }}</p>
+        <div class="flex items-center mb-2 gap-x-2">
+
+
+                @if($category = $quote->categories()->first())
+                    @foreach ($quote->categories as $category)
+                            <x-badge
+                                wire:navigate
+                                href="{{ route('quotes.index',['category'=> $category->slug]) }}"
+                                :bgColor="$category->bg_color">
+                                    {{ $category->name }}
+                            </x-badge>
+                    @endforeach
+                @endif
+                <p class="text-sm text-gray-500">{{ $quote->quoted_at }}</p>
+
+
         </div>
         <a class="text-xl font-bold text-gray-900">{{ $quote->content }}</a>
     </div>

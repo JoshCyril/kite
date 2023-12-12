@@ -17,9 +17,7 @@
             <div class="w-full">
                 <div class="grid w-full grid-cols-3 gap-10">
                     @foreach ($featuredQuotes as $quote)
-                        <div class="col-span-3 md:col-span-1">
-                            <x-quotes.quote-card :quote="$quote"/>
-                        </div>
+                            <x-quotes.quote-card :quote="$quote" class="col-span-3 md:col-span-1"/>
                     @endforeach
                 </div>
             </div>
@@ -33,9 +31,7 @@
         <div class="w-full mb-5">
             <div class="grid w-full grid-cols-3 gap-10">
                 @foreach ($latestQuotes as $quote)
-                    <div class="col-span-3 md:col-span-1">
-                        <x-quotes.quote-card :quote="$quote"/>
-                    </div>
+                        <x-quotes.quote-card :quote="$quote" class="col-span-3 md:col-span-1"/>
                 @endforeach
             </div>
         </div>

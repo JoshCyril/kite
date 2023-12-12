@@ -33,7 +33,13 @@ class QuoteList extends Component
     #[On('search')]
     public function updateSearch($search){
         $this->search = $search;
-        // dd('search');
+        $this->resetPage();
+    }
+
+    public function clearFilters(){
+        $this->search = '';
+        $this->category = '';
+        $this->resetPage();
     }
 
     #[Computed()]

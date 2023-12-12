@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
 
-Route::get('/quote', [QuoteController::class,'index'])->name('quote.index');
+Route::get('/quote', [QuoteController::class,'index'])->name('quotes.index');
 
 Route::middleware([
     'auth:sanctum',
