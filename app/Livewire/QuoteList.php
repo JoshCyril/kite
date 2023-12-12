@@ -40,12 +40,19 @@ class QuoteList extends Component
     public function quotes(){
         return Quote::quoted()
             ->orderBy('quoted_at',$this->sort )
-            ->when(Category::where('slug', $this->category)->first(), function($query){
-                $query->WithCategory($this->category);
+            ->when($this->activeCategory, function($query){
+                $query->withCategory($this->category);
             })
             ->where('content','like',"%{$this->search}%")
-            ->paginate(5);
+            ->paginate(3);
     }
+
+    #[Computed()]
+    public function activeCategory()
+    {
+        return Category::where('slug', $this->category)->first();
+    }
+
     public function render()
     {
         return view('livewire.quote-list');

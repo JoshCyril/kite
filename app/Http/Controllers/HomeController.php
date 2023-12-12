@@ -13,7 +13,7 @@ class HomeController extends Controller
     public function __invoke(Request $request)
     {
         return view('home',[
-            'featuredQuotes' => Quote::Quoted()->Trending()->latest('quoted_at')->take(3)->get(),
+            'featuredQuotes' => Quote::Quoted()->Featured()->latest('quoted_at')->take(3)->get(),
             'latestQuotes' => Quote::Quoted()->take(9)->get()
         ]);
     }

@@ -43,13 +43,14 @@ class Quote extends Model
         $query->where('quoted_at','<=', Carbon::now());
     }
 
-    public function scopeTrending($query){
-        $query->where('quoted_at','<=', Carbon::now());
+    public function scopeFeatured($query){
+        $query->where('featured',true);
     }
 
-    public function scopeWithCategory($query, string $category){
-        $query->whereHas('categories',function($query) use ($category){
-            $query->where('slug',$category);
+    public function scopeWithCategory($query, string $category)
+    {
+        $query->whereHas('categories', function ($query) use ($category) {
+            $query->where('slug', $category);
         });
     }
 
