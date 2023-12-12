@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
+use Illuminate\Support\Str;
 
 
 class CategoryResource extends Resource
@@ -26,7 +27,17 @@ class CategoryResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')->required()->minLength(1)->maxLength (124),
+                TextInput::make('name')
+                ->live()
+                ->afterStateUpdated(function(string $operation, $state, Forms\Set $set){
+                    if($operation === 'edit'){
+                        return;
+                    }
+
+                    $set('slug', Str::slug($state));
+                })
+                ->required()->minLength(1)->maxLength (124),
+                TextInput::make('slug')->required()->unique(ignoreRecord:true)->minLength(1)->maxLength (124),
                 TextInput::make('icon')->required()
             ]);
     }
@@ -36,6 +47,7 @@ class CategoryResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')->sortable()->searchable(),
+                TextColumn::make('slug')->sortable()->searchable(),
                 TextColumn::make('icon')->sortable()->searchable()
             ])
             ->filters([

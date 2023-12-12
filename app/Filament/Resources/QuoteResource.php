@@ -6,6 +6,8 @@ use App\Filament\Resources\QuoteResource\Pages;
 use App\Filament\Resources\QuoteResource\RelationManagers;
 use App\Models\Quote;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -14,6 +16,10 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\Section;
+use Illuminate\Support\Str;
+use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Checkbox;
 
 class QuoteResource extends Resource
 {
@@ -25,10 +31,27 @@ class QuoteResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('content')->required(),
-                TextInput::make('explanation')->required(),
-                TextInput::make('author')->required(),
-                TextInput::make('quoted_at')->required(),
+                Section::make('Main Content')->schema([
+                    TextInput::make('content')
+                    ->live()
+                    ->afterStateUpdated(function(string $operation, $state, Forms\Set $set){
+                        if($operation === 'edit'){
+                            return;
+                        }
+
+                        $set('slug', Str::slug($state));
+                    })
+                    ->required()->minLength(1)->maxLength (124),
+                    TextInput::make('slug')->required()->unique(ignoreRecord:true)->minLength(1)->maxLength (124),
+                    TextInput::make('author')->required(),
+
+                    RichEditor::make('explanation')->required()->fileAttachmentsDirectory('quotes/images')->columnSpanFull(),
+                ])->COLUMN(2),
+                Section::make('Meta')->schema([
+                    FileUpload::make('image')->image()->directory('quotes/covers'),
+                    DateTimePicker::make('quoted_at')->required()
+                ]),
+
             ]);
     }
 

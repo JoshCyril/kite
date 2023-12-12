@@ -14,9 +14,12 @@ return new class extends Migration
         Schema::create('quotes', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_detail_id')->unsigned();
+            $table->string('cover_image')->nullable();
             $table->string('content', 124);
-            $table->string('explanation',256);
+            $table->string('slug', 124)->unique();
+            $table->text('explanation',256);
             $table->string('author', 25);
+            $table->boolean('featured')->default(false);
             $table->datetime('quoted_at');
             $table->timestamps();
             $table->softDeletes();
