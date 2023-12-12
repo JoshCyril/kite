@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Category;
 use App\Models\Quote;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Url;
@@ -17,6 +18,9 @@ class QuoteList extends Component
 
     #[Url()]
     public $sort = 'desc';
+
+    #[Url()]
+    public $category = '';
 
     #[Url()]
     public $search = '';
@@ -36,6 +40,9 @@ class QuoteList extends Component
     public function quotes(){
         return Quote::quoted()
             ->orderBy('quoted_at',$this->sort )
+            ->when(Category::where('slug', $this->category)->first(), function($query){
+                $query->WithCategory($this->category);
+            })
             ->where('content','like',"%{$this->search}%")
             ->paginate(5);
     }

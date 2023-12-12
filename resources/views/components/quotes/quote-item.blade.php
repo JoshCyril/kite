@@ -3,7 +3,7 @@
     <div class="grid items-start grid-cols-12 gap-3 mt-5 article-body">
         <div class="flex items-center col-span-4 article-thumbnail">
             <a href="">
-                <img class="mx-auto mw-100 rounded-xl" src="" alt="thumbnail">
+                <img class="mx-auto mw-100 rounded-xl" src="{{ $quote->getCoverImage() }}" alt="thumbnail">
             </a>
         </div>
         <div class="col-span-8">
@@ -14,10 +14,16 @@
                 </a>
             </h2>
 
-            <div class="flex items-center justify-between article-actions-bar">
-                <div class="flex items-center space-x-4">
-                    <span class="text-sm text-gray-500">{{ $quote->getReadingTime() }} min read</span>
+            <div class="flex items-center justify-between mt-3 article-actions-bar">
+                <div class="flex gap-x-2">
+                    @foreach ($quote->categories as $category)
+                        <x-badge :bgColor="$category->bg_color">{{ $category->name }}</x-badge>
+                    @endforeach
+                    <div class="flex items-center space-x-4">
+                        <span class="text-sm text-gray-500">{{ $quote->getReadingTime() }} min read</span>
+                    </div>
                 </div>
+
                 <div>
                     <a class="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-600 hover:text-gray-900">

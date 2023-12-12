@@ -38,7 +38,7 @@ class CategoryResource extends Resource
                 })
                 ->required()->minLength(1)->maxLength (124),
                 TextInput::make('slug')->required()->unique(ignoreRecord:true)->minLength(1)->maxLength (124),
-                TextInput::make('icon')->required()
+                TextInput::make('bg_color')->required()
             ]);
     }
 
@@ -48,7 +48,7 @@ class CategoryResource extends Resource
             ->columns([
                 TextColumn::make('name')->sortable()->searchable(),
                 TextColumn::make('slug')->sortable()->searchable(),
-                TextColumn::make('icon')->sortable()->searchable()
+                TextColumn::make('bg_color')->sortable()->searchable()
             ])
             ->filters([
                 //

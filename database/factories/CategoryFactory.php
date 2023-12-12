@@ -21,7 +21,7 @@ class CategoryFactory extends Factory
         return [
             'name'=>$title ,
             'slug'=>Str::slug($title),
-            'icon'=>fake()->word(),
+            'bg_color'=>fake()->randomElement(['red', 'green', 'blue', 'purple']),
         ];
     }
 }

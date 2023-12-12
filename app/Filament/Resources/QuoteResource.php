@@ -20,6 +20,9 @@ use Filament\Forms\Components\Section;
 use Illuminate\Support\Str;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Checkbox;
+use Filament\Forms\Components\Select;
+use Filament\Tables\Columns\CheckboxColumn;
+use Filament\Tables\Columns\ImageColumn;
 
 class QuoteResource extends Resource
 {
@@ -31,7 +34,10 @@ class QuoteResource extends Resource
     {
         return $form
             ->schema([
-                Section::make('Main Content')->schema([
+                Section::make('Quote')
+                ->description('What is in your mind?')
+                ->icon('heroicon-m-chat-bubble-left')
+                ->schema([
                     TextInput::make('content')
                     ->live()
                     ->afterStateUpdated(function(string $operation, $state, Forms\Set $set){
@@ -42,15 +48,20 @@ class QuoteResource extends Resource
                         $set('slug', Str::slug($state));
                     })
                     ->required()->minLength(1)->maxLength (124),
-                    TextInput::make('slug')->required()->unique(ignoreRecord:true)->minLength(1)->maxLength (124),
-                    TextInput::make('author')->required(),
 
-                    RichEditor::make('explanation')->required()->fileAttachmentsDirectory('quotes/images')->columnSpanFull(),
-                ])->COLUMN(2),
-                Section::make('Meta')->schema([
-                    FileUpload::make('image')->image()->directory('quotes/covers'),
-                    DateTimePicker::make('quoted_at')->required()
-                ]),
+                    Select::make('user_detail_id')
+                        ->label('Author')
+                        ->relationship('userDetail', 'user_name')
+                        ->searchable(),
+
+                    RichEditor::make('explanation')->required()->fileAttachmentsDirectory('quotes/images'),
+                    FileUpload::make('cover_image')->image()->directory('quotes/covers'),
+                ])->columns(2),
+                Section::make('Extras')->schema([
+                    Checkbox::make('featured'),
+                    TextInput::make('slug')->required()->unique(ignoreRecord:true)->minLength(1)->maxLength (124),
+                    DateTimePicker::make('quoted_at')->nullable(),
+                ])->columns(2),
 
             ]);
     }
@@ -59,9 +70,11 @@ class QuoteResource extends Resource
     {
         return $table
             ->columns([
+                ImageColumn::make('cover_image'),
                 TextColumn::make('content')->sortable()->searchable(),
                 TextColumn::make('explanation')->sortable()->searchable(),
-                TextColumn::make('author')->sortable()->searchable(),
+                TextColumn::make('userDetail.user_name')->label('Author')->sortable()->searchable(),
+                CheckboxColumn::make('featured')->sortable()->searchable(),
                 TextColumn::make('quoted_at')->date('Y-m-d')->sortable()->searchable()
 
             ])

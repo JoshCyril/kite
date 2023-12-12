@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class Quote extends Model
 {
@@ -39,11 +40,17 @@ class Quote extends Model
     }
 
     public function scopeQuoted($query){
-        $query->WHERE('quoted_at','<=', Carbon::now());
+        $query->where('quoted_at','<=', Carbon::now());
     }
 
     public function scopeTrending($query){
-        $query->WHERE('quoted_at','<=', Carbon::now());
+        $query->where('quoted_at','<=', Carbon::now());
+    }
+
+    public function scopeWithCategory($query, string $category){
+        $query->whereHas('categories',function($query) use ($category){
+            $query->where('slug',$category);
+        });
     }
 
     public function getReadingTime(){
@@ -54,6 +61,11 @@ class Quote extends Model
     public function getExcerpt(){
         return Str::limit(strip_tags($this->body),150);
 
+    }
+
+    public function getCoverImage(){
+        $isUrl = str_contains($this->cover_image, 'http');
+        return ($isUrl) ? $this->cover_image : Storage::disk('public')->url($this->cover_image);
     }
 
     protected $casts = [

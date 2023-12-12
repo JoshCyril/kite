@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Quote;
-use Illuminate\Http\Request;
+
+use App\Models\Category;
 
 class QuoteController extends Controller
 {
@@ -13,7 +13,9 @@ class QuoteController extends Controller
     {
         return view('quotes.index',
         [
-            'quotes' => Quote::take(5)->get()
+            'categories' => Category::whereHas('quotes', function($query){
+                $query->quoted();
+            })->take(10)->get()
         ]
 
     );
