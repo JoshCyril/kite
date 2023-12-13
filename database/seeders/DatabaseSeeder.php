@@ -33,9 +33,6 @@ class DatabaseSeeder extends Seeder
             ->create();
 
 
-        // \App\Models\Image::factory(5)
-        //     ->create();
-
         \App\Models\Event::factory(8)
             ->create();
 
