@@ -17,11 +17,11 @@ class Quote extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['content', 'explanation', 'author'];
+    protected $fillable = ['content', 'cover_image', 'explanation', 'author', 'slug', 'user_id', 'quoted_at'];
 
-    public function userDetail(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(UserDetail::class);
+        return $this->belongsTo(User::class);
     }
 
     public function categories(): BelongsToMany

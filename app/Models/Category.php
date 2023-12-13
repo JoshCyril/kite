@@ -10,7 +10,7 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'icon'];
+    protected $fillable = ['name', 'bg_color', 'slug'];
 
     public function quotes(): BelongsToMany
     {

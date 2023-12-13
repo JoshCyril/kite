@@ -29,15 +29,15 @@ class CategoryResource extends Resource
             ->schema([
                 TextInput::make('name')
                 ->live()
+                ->required()->minLength(1)->maxLength (124)
                 ->afterStateUpdated(function(string $operation, $state, Forms\Set $set){
                     if($operation === 'edit'){
                         return;
                     }
 
                     $set('slug', Str::slug($state));
-                })
-                ->required()->minLength(1)->maxLength (124),
-                TextInput::make('slug')->required()->unique(ignoreRecord:true)->minLength(1)->maxLength (124),
+                }),
+                TextInput::make('slug')->required()->minLength(1)->unique(ignoreRecord:true)->maxLength (124),
                 TextInput::make('bg_color')->required()
             ]);
     }
