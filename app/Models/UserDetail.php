@@ -21,8 +21,4 @@ class UserDetail extends Model
     }
 
 
-    public function image(): MorphOne
-    {
-        return $this->morphOne(Image::class, 'imageable');
-    }
 }

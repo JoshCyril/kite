@@ -34,10 +34,6 @@ class Quote extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function image(): MorphOne
-    {
-        return $this->morphOne(Image::class, 'imageable');
-    }
 
     public function scopeQuoted($query){
         $query->where('quoted_at','<=', Carbon::now());
