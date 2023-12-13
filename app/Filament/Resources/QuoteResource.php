@@ -49,9 +49,9 @@ class QuoteResource extends Resource
                     })
                     ->required()->minLength(1)->maxLength (124),
 
-                    Select::make('user_detail_id')
+                    Select::make('user_id')
                         ->label('Author')
-                        ->relationship('userDetail', 'user_name')
+                        ->relationship('user', 'name')
                         ->searchable(),
 
                     RichEditor::make('explanation')->required()->fileAttachmentsDirectory('quotes/images'),

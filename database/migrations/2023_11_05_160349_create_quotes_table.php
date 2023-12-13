@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('quotes', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_detail_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
             $table->string('cover_image')->nullable();
             $table->string('content', 124);
             $table->string('slug', 124)->unique();
@@ -24,8 +24,8 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('user_detail_id')->references('id')
-                ->on('user_details')->onDelete('cascade')
+            $table->foreign('user_id')->references('id')
+                ->on('user')->onDelete('cascade')
                 ->onUpdate('cascade');
         });
     }

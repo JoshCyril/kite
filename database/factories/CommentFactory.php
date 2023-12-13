@@ -20,8 +20,8 @@ class CommentFactory extends Factory
             'quote_id' => fake()->randomElement(
                 \App\Models\Quote::pluck('id', 'id')->toArray()
             ), // picks id from UserDetails table
-            'user_detail_id' => fake()->randomElement(
-                \App\Models\UserDetail::pluck('id', 'id')->toArray()
+            'user_id' => fake()->randomElement(
+                \App\Models\User::pluck('id', 'id')->toArray()
             ), // picks id from UserDetails table
             'body'=>fake()->realText(256),
         ];

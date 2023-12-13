@@ -24,11 +24,11 @@ class QuoteFactory extends Factory
             'cover_image'=>fake()->imageUrl(),
             'explanation' => fake()->paragraph(10),
             'author' => fake()->firstName(),
-            'quoted_at' => fake()->dateTimeBetween('-1 Week', '+1 Week'),
+            'quoted_at' => fake()->dateTimeBetween('-2 Week', '+1 Day'),
             'featured' => fake()->boolean(30),
 
-            'user_detail_id' => fake()->randomElement(
-                \App\Models\UserDetail::pluck('id', 'id')->toArray()
+            'user_id' => fake()->randomElement(
+                \App\Models\User::pluck('id', 'id')->toArray()
             ) // picks id from UserDetails table randomly
         ];
     }

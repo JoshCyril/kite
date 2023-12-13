@@ -46,8 +46,8 @@
             </p>
 
             <div class="flex items-center py-1 mt-4 text-sm article-meta">
-                <img class="mr-3 rounded-full w-7 h-7" src="{{ $quote->userDetail->user->profile_photo_url }}" alt="$quote->userDetail->user->name">
-                <span class="mr-1 text-xs">{{ $quote->userDetail->user_name }}</span>
+                <img class="mr-3 rounded-full w-7 h-7" src="{{ $quote->user->profile_photo_url }}" alt="$quote->userDetail->user->name">
+                <span class="mr-1 text-xs">{{ $quote->user->name }}</span>
                 <span class="text-xs text-gray-500">. {{ $quote->quoted_at->diffForHumans() }}</span>
             </div>
 

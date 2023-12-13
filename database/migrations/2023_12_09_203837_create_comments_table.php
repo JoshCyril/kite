@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('quote_id')->unsigned();
-            $table->bigInteger('user_detail_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
             $table->string("body", 256);
             $table->timestamps();
 
@@ -22,8 +22,8 @@ return new class extends Migration
                 ->on('quotes')->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreign('user_detail_id')->references('id')
-                ->on('user_details')->onDelete('cascade')
+            $table->foreign('user_id')->references('id')
+                ->on('user')->onDelete('cascade')
                 ->onUpdate('cascade');
 
         });
