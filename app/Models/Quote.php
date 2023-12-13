@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 
@@ -34,6 +34,10 @@ class Quote extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function likes(): MorphToMany
+    {
+        return $this->morphToMany(Like::class, 'likeable');
+    }
 
     public function scopeQuoted($query){
         $query->where('quoted_at','<=', Carbon::now());
