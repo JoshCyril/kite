@@ -15,13 +15,13 @@ class UserDetailTableSeeder extends Seeder
     {
         $g = new UserDetail;
         $g->user_name = "@user";
-        $g->user_id = 11;
+        $g->user_id = 9;
         $g->is_admin = false;
         $g->save();
 
         $g1 = new UserDetail;
         $g1->user_name = "@admin";
-        $g1->user_id = 12;
+        $g1->user_id = 10;
         $g1->is_admin = true;
         $g1->save();
     }

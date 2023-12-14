@@ -12,10 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('likeables', function (Blueprint $table) {
-            $table->id();
+            $table->bigInteger('like_id');
             $table->integer("likeable_id");
             $table->string("likeable_type");
-            $table->timestamps();
         });
     }
 

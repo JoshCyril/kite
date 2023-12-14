@@ -18,9 +18,6 @@ class UserDetail extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function likes() : MorphToMany {
-        return $this->morphToMany(Like::class, 'likeable');
-    }
 
 
 }

@@ -17,15 +17,21 @@ class DatabaseSeeder extends Seeder
 
 
         // Model Factory
-        \App\Models\User::factory(10)
+        \App\Models\User::factory(8)
+            ->hasAttached(
+                \App\Models\Like::factory()->count(3),
+            )->create();
+
+        \App\Models\UserDetail::factory(8)
             ->create();
 
-        \App\Models\UserDetail::factory(10)
-            ->create();
-
-        \App\Models\Quote::factory(10)
+        \App\Models\Quote::factory(20)
             ->hasAttached(
                 \App\Models\Category::factory(2)
+
+            )
+            ->hasAttached(
+                \App\Models\Like::factory()->count(3),
             )
            ->create();
 
@@ -35,6 +41,18 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Event::factory(8)
             ->create();
+
+
+
+        // \App\Models\Likeable::factory(20)
+        //     ->create();
+
+        // \App\Models\Quote::factory()
+        //     ->hasAttached(
+        //         \App\Models\Like::factory()->count(3),
+        //         ['public' => true]
+        //     )
+        //     ->create();
 
         //Seeder
         $this->call(UserTableSeeder::class);

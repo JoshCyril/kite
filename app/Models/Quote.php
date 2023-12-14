@@ -26,7 +26,7 @@ class Quote extends Model
 
     public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class)->withTimestamps();
     }
 
     public function comments(): HasMany
@@ -38,6 +38,7 @@ class Quote extends Model
     {
         return $this->morphToMany(Like::class, 'likeable');
     }
+
 
     public function scopeQuoted($query){
         $query->where('quoted_at','<=', Carbon::now());

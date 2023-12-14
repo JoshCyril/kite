@@ -4,8 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Likeable extends Model
 {
     use HasFactory;
+
+    public function likeable(): MorphTo
+    {
+        return $this->morphTo();
+    }
+
 }

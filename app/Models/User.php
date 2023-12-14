@@ -10,6 +10,8 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\Builder;
 
 class User extends Authenticatable
 {
@@ -68,5 +70,17 @@ class User extends Authenticatable
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function likes(): MorphToMany
+    {
+        return $this->morphToMany(Like::class, 'likeable');
+    }
+
+    public function hasLiked(Quote $quote)
+    {
+        return $this->likes()->where('likeable_id', $quote->id)
+                    ->where('likeable_type', 'App\Models\Quote')
+                    ->exists();
     }
 }

@@ -4,27 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Like extends Model
 {
     use HasFactory;
 
-    public function quotes()
+    public function quotes(): MorphToMany
     {
         return $this->morphedByMany(Quote::class, 'likeable');
     }
 
-
-
-    /**
-
-     * Get all of the videos that are assigned this tag.
-
-     */
-
-    public function userDetails()
+    public function users(): MorphToMany
     {
-        return $this->morphedByMany(UserDetail::class, 'likeable');
+        return $this->morphedByMany(User::class, 'likeable');
+    }
+
+    public function related(): MorphOne
+    {
+        return $this->morphOne(Like::class, 'likeable');
     }
 
 }
