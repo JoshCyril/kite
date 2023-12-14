@@ -19,6 +19,8 @@ Route::get('/', HomeController::class)->name('home');
 
 Route::get('/quote', [QuoteController::class,'index'])->name('quotes.index');
 
+Route::get('/quote/{quote:slug}', [QuoteController::class,'show'])->name('quotes.show');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

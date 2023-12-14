@@ -79,6 +79,7 @@ class User extends Authenticatable
 
     public function hasLiked(Quote $quote)
     {
+
         return $this->likes()->where('likeable_id', $quote->id)
                     ->where('likeable_type', 'App\Models\Quote')
                     ->exists();

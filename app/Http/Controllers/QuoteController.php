@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-
+use App\Models\Quote;
 class QuoteController extends Controller
 {
     /**
@@ -18,6 +18,17 @@ class QuoteController extends Controller
             whereHas('quotes', function($query){
                 $query->quoted();
             })->take(10)->get()
+        ]
+
+    );
+    }
+
+    public function show(Quote $quote)
+    {
+        return view(
+        'quotes.show',
+        [
+            'quote' => $quote
         ]
 
     );

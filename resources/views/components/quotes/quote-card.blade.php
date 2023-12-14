@@ -1,6 +1,6 @@
 @props(['quote'])
 <div {{ $attributes }}>
-    <a href="#">
+    <a wire:navigate href="{{ route('quotes.show', $quote->slug)}}">
         <div>
             <img class="w-full rounded-xl"
                 src="{{ $quote->getCoverImage() }}">
@@ -12,19 +12,16 @@
 
                 @if($category = $quote->categories()->first())
                     @foreach ($quote->categories as $category)
-                            <x-badge
-                                wire:navigate
-                                href="{{ route('quotes.index',['category'=> $category->slug]) }}"
-                                :bgColor="$category->bg_color">
-                                    {{ $category->name }}
-                            </x-badge>
+                        <x-quotes.category-badge :category="$category" />
                     @endforeach
                 @endif
                 <p class="text-sm text-gray-500">{{ $quote->quoted_at }}</p>
 
 
         </div>
-        <a class="text-xl font-bold text-gray-900">{{ $quote->content }}</a>
+        {{-- <a class="text-xl font-bold text-gray-900">{{ $quote->content }}</a> --}}
+        <a wire:navigate href="{{ route('quotes.show', $quote->slug) }}"
+            class="text-xl font-bold text-gray-900">{{ $quote->content }}</a>
     </div>
 
 </div>

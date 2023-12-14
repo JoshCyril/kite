@@ -6,7 +6,7 @@
         </h1>
         <p class="mt-1 text-lg text-gray-500">Best Blog in the universe</p>
         <a class="inline-block px-3 py-2 mt-5 text-lg text-white bg-gray-800 rounded"
-            href="http://127.0.0.1:8000/blog">Start
+            href="{{ route('quotes.index') }}">Start
             Reading</a>
     </div>
     @endsection
@@ -17,12 +17,12 @@
             <div class="w-full">
                 <div class="grid w-full grid-cols-3 gap-10">
                     @foreach ($featuredQuotes as $quote)
-                            <x-quotes.quote-card :quote="$quote" class="col-span-3 md:col-span-1"/>
+                        <x-quotes.quote-card :quote="$quote" class="col-span-3 md:col-span-1"/>
                     @endforeach
                 </div>
             </div>
             <a class="block mt-10 text-lg font-semibold text-center text-yellow-500"
-                href="http://127.0.0.1:8000/blog">More
+                href="{{ route('quotes.index') }}">More
                 Posts</a>
         </div>
         <hr>
@@ -36,7 +36,7 @@
             </div>
         </div>
         <a class="block mt-10 text-lg font-semibold text-center text-yellow-500"
-            href="http://127.0.0.1:8000/blog">More
+            href="{{ route('quotes.index') }}">More
             Posts</a>
     </div>
 </x-app-layout>

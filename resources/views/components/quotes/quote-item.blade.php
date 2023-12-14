@@ -2,7 +2,7 @@
 <article class="[&:not(:last-child)]:border-b border-gray-100 pb-10">
     <div class="grid items-start grid-cols-12 gap-3 mt-5 article-body">
         <div class="flex items-center col-span-4 article-thumbnail">
-            <a href="">
+            <a wire:navigate href="{{ route('quotes.show', $quote->slug) }}">
                 <img class="mx-auto mw-100 rounded-xl" src="{{ $quote->getCoverImage() }}" alt="thumbnail">
             </a>
         </div>
@@ -17,12 +17,7 @@
             <div class="flex items-center justify-between mt-3 article-actions-bar">
                 <div class="flex gap-x-2">
                     @foreach ($quote->categories as $category)
-                        <x-badge
-                            wire:navigate
-                            href="{{ route('quotes.index',['category'=> $category->slug]) }}"
-                            :bgColor="$category->bg_color">
-                                {{ $category->name }}
-                        </x-badge>
+                        <x-quotes.category-badge :category="$category" />
                     @endforeach
                     <div class="flex items-center space-x-4">
                         <span class="text-sm text-gray-500">{{ $quote->getReadingTime() }} min read</span>
