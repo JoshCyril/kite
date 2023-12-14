@@ -15,26 +15,26 @@ class UserTableSeeder extends Seeder
     public function run(): void
     {
         $g = new User;
-        $g->name = "test user";
+        $g->name = "Test - User";
         $g->email = "test@mail.com";
         $g->password = '$2y$10$iiBnje4gtfPsXn2i7/EpxOk9cFKrek9MI8pPl6EECTB/NVGJBszTW';
         $g->email_verified_at = Carbon::now();
         $g->two_factor_secret= null;
         $g->two_factor_recovery_codes = null;
         $g->remember_token = "123iDj4s5x";
-        $g->profile_photo_path = null;
+        $g->profile_photo_path = "profile-photos/1.jpg";
         $g->current_team_id = null;
         $g->save();
 
         $g1 = new User;
-        $g1->name = "test admin";
+        $g1->name = "Test - Admin";
         $g1->email = "admin@mail.com";
         $g1->password = '$2y$10$iiBnje4gtfPsXn2i7/EpxOk9cFKrek9MI8pPl6EECTB/NVGJBszTW';
         $g1->email_verified_at = Carbon::now();
         $g1->two_factor_secret= null;
         $g1->two_factor_recovery_codes = null;
         $g1->remember_token = "223iDj4s5x";
-        $g1->profile_photo_path = null;
+        $g1->profile_photo_path = "profile-photos/20.jpg";
         $g1->current_team_id = null;
         $g1->save();
     }

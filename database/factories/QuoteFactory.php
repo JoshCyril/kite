@@ -21,8 +21,8 @@ class QuoteFactory extends Factory
         return [
             'content' => $content,
             'slug'=>Str::slug($content),
-            'cover_image'=>fake()->imageUrl(),
-            'explanation' => fake()->paragraph(10),
+            'cover_image'=>"quotes/covers/".fake()->numberBetween(1,20).".png",
+            'explanation' => fake()->paragraph(10,true),
             'author' => fake()->firstName(),
             'quoted_at' => fake()->dateTimeBetween('-2 Week', '+1 Day'),
             'featured' => fake()->boolean(30),
