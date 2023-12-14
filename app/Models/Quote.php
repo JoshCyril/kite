@@ -56,12 +56,12 @@ class Quote extends Model
     }
 
     public function getReadingTime(){
-        $mins = round(str_word_count($this->body) /250);
+        $mins = round(str_word_count($this->explanation) /250);
         return ($mins < 1) ? 1 : $mins;
     }
 
     public function getExcerpt(){
-        return Str::limit(strip_tags($this->body),150);
+        return Str::limit(strip_tags($this->explanation),100);
 
     }
 

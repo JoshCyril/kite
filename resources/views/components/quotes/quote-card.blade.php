@@ -1,27 +1,38 @@
 @props(['quote'])
-<div {{ $attributes }}>
-    <a wire:navigate href="{{ route('quotes.show', $quote->slug)}}">
-        <div>
-            <img class="w-full rounded-xl"
-                src="{{ $quote->getCoverImage() }}">
+<div {{ $attributes }} >
+    <div class="flex flex-col h-full p-8 bg-white border rounded shadow-sm">
+        <div class="">
+            <p class="mb-4 text-xs font-semibold tracking-wide uppercase">
+                <span class="transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">
+                    @if($category = $quote->categories()->first())
+                        @foreach ($quote->categories as $category)
+                            <x-quotes.category-badge :category="$category" />
+                        @endforeach
+                    @endif
+                </span>
+                <div class="mb-5 text-gray-600">— {{ $quote->quoted_at->diffForHumans() }}</div>
+              </p>
+
+              <a wire:navigate href="{{ route('quotes.show', $quote->slug)}}" aria-label="Article" title="Jingle Bells"
+                class="inline-block mb-5 text-2xl font-medium text-black transition-colors duration-200 hover:text-deep-purple-accent-400">
+                <span class="text-5xl font-black text-gray-200">"</span> {{ $quote->content }}
+              </a>
         </div>
-    </a>
-    <div class="mt-3">
-        <div class="flex items-center mb-2 gap-x-2">
 
+        <div class="flex items-center pb-2 mt-5">
 
-                @if($category = $quote->categories()->first())
-                    @foreach ($quote->categories as $category)
-                        <x-quotes.category-badge :category="$category" />
-                    @endforeach
-                @endif
-                <p class="text-sm text-gray-500">{{ $quote->quoted_at }}</p>
+          <a href="" aria-label="Author" title="Author" class="mr-3">
+            <img src="{{ $quote->user->profile_photo_url }}" alt="avatar" class="object-cover w-10 h-10 rounded-full shadow-sm" />
+          </a>
 
+          <div>
+            <a href="/" aria-label="Author" title="Author" class="font-semibold text-gray-800 transition-colors duration-200 hover:text-deep-purple-accent-400">
+              {{ $quote->user->name }}
+            </a>
+            <p class="text-sm font-medium leading-4 text-gray-600">{{ $quote->user->userDetail->user_name }}</p>
+          </div>
 
         </div>
-        {{-- <a class="text-xl font-bold text-gray-900">{{ $quote->content }}</a> --}}
-        <a wire:navigate href="{{ route('quotes.show', $quote->slug) }}"
-            class="text-xl font-bold text-gray-900">{{ $quote->content }}</a>
-    </div>
 
+      </div>
 </div>
