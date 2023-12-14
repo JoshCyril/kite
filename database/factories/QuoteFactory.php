@@ -17,7 +17,7 @@ class QuoteFactory extends Factory
      */
     public function definition(): array
     {
-        $content = fake()->unique()->sentence();
+        $content = fake()->unique()->realText(100);
         return [
             'content' => $content,
             'slug'=>Str::slug($content),

@@ -1,3 +1,3 @@
-<header class="sticky top-0 bg-slate-100">
+<header class="sticky top-0 shadow-md bg-purple-50">
     <livewire:navigation-menu/>
 </header>

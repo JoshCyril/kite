@@ -1,11 +1,34 @@
-@props(['active'])
+@props(['active', 'index'])
 
 @php
-$classes = ($active ?? false)
-            ? 'inline-flex items-center px-1 pt-1 border-b-2 border-indigo-400 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out'
-            : 'inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out';
+
+if($active){
+    $classes = ($index == 0)
+                    ? 'inline-flex
+                        items-center justify-center h-8 px-4
+                        font-medium tracking-wide text-purple transition
+                        duration-200  rounded shadow-md
+                        hover:text-black hover:bg-purple-100
+                        focus:shadow-outline focus:outline-none
+                        border-2 border-purple-500/75 shadow-none '
+                    : 'inline-flex items-center
+                        justify-center h-8 px-4 font-medium
+                        tracking-wide text-white transition
+                        duration-200 bg-purple-500 rounded
+                        shadow-md hover:text-black hover:bg-purple-100
+                        border-2 border-purple-500/75 shadow-none
+                        focus:shadow-outline focus:outline-none';
+
+}else{
+    $classes = ($index == 0)
+                    ? 'h-8 px-4 border-2 border-purple-500/0 font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-800'
+                    : 'h-8 px-4 border-2 underline decoration-2 underline-offset-8 border-purple-500/0 bg-white-100 font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-800';
+};
+
 @endphp
 
-<a wire:navigate {{ $attributes->merge(['class' => $classes]) }}>
-    {{ $slot }}
-</a>
+<li >
+    <a wire:navigate  {{ $attributes->merge(['class' => $classes]) }}>
+        {{ $slot }}
+    </a>
+</li>

@@ -54,7 +54,7 @@
                 </div>
             <a class="block mt-10 text-lg font-semibold text-center text-purple-400"
             wire:navigate href="{{ route('quotes.index') }}">
-            More Posts</a>
+            More Quotes</a>
         </div>
         <hr>
 
@@ -68,6 +68,6 @@
             </div>
         <a class="block mt-10 text-lg font-semibold text-center text-purple-400"
         wire:navigate href="{{ route('quotes.index') }}">
-        More Posts</a>
+        More Quotes</a>
     </div>
 </x-app-layout>

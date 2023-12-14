@@ -1,6 +1,6 @@
 @props(['quote'])
 <div {{ $attributes }} >
-    <div class="flex flex-col h-full p-8 bg-white border rounded shadow-sm">
+    <div class="flex flex-col h-full p-8 transition-colors duration-200 bg-white border rounded shadow-sm hover:bg-purple-50">
         <div class="">
             <p class="mb-4 text-xs font-semibold tracking-wide uppercase">
                 <span class="transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">

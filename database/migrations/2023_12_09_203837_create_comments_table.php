@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('quote_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
-            $table->string("body", 256);
+            $table->string("comment", 256);
             $table->timestamps();
 
             $table->foreign('quote_id')->references('id')

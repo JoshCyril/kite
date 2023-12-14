@@ -23,7 +23,7 @@ class CommentFactory extends Factory
             'user_id' => fake()->randomElement(
                 \App\Models\User::pluck('id', 'id')->toArray()
             ), // picks id from UserDetails table
-            'body'=>fake()->realText(256),
+            'comment'=>fake()->realText(30)." ".fake()->emoji(),
         ];
     }
 }

@@ -1,11 +1,38 @@
 <!-- Settings Dropdown -->
-<div class="relative ms-3">
+<ul class="flex items-center ml-auto space-x-8 lg:flex">
+
     <x-dropdown align="right" width="48">
         <x-slot name="trigger">
             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                <button class="flex text-sm transition border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300">
+                {{-- <button class="flex text-sm transition border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300">
                     <img class="object-cover w-8 h-8 rounded-full" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+                    <span>{{ Auth::user()->name }}</span>
                 </button>
+
+                <div>
+                    <button class="flex text-sm transition border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300">
+                        <a href="/" aria-label="Author" title="Author" class="font-semibold text-gray-800 transition-colors duration-200 hover:text-deep-purple-accent-400">
+                        {{ $quote->user->name }}
+                        </a>
+                        <p class="text-sm font-medium leading-4 text-gray-600">{{ $quote->user->userDetail->user_name }}</p>
+                    </button>
+                </div> --}}
+
+                <button class="flex items-center pb-2 mt-5">
+                        {{-- <a href="" aria-label="User" title="User" class="mr-3"> --}}
+                    <span>
+                        <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" class="object-cover w-10 h-10 mr-3 rounded-full shadow-sm" />
+                    </span>
+                        {{-- </a> --}}
+
+                        <div class="text-left">
+                            <span href="/" aria-label="user Profile" title="user Profile" class="font-semibold text-gray-800 capitalize transition-colors duration-200 hover:text-deep-purple-accent-400">
+                                {{ Auth::user()->name }}
+                            </span>
+                            <p class="text-sm font-medium leading-4 text-gray-600">{{ Auth::user()->userDetail->user_name }}</p>
+                        </div>
+                  </button>
+
             @else
                 <span class="inline-flex rounded-md">
                     <button type="button" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50">
@@ -29,6 +56,10 @@
                 {{ __('Profile') }}
             </x-dropdown-link>
 
+            {{-- <x-dropdown-link wire:navigate href="{{ route('admin') }}">
+                {{ __('Dashboard') }}
+            </x-dropdown-link> --}}
+
             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                 <x-dropdown-link wire:navigate href="{{ route('api-tokens.index') }}">
                     {{ __('API Tokens') }}
@@ -47,5 +78,7 @@
                 </x-dropdown-link>
             </form>
         </x-slot>
+
+
     </x-dropdown>
-</div>
+</ul>

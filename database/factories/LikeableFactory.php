@@ -18,7 +18,7 @@ class LikeableFactory extends Factory
     {
         $ele =fake()->boolean();
 
-            if (fake()->boolean()){
+            if ($ele){
                 return [
                     "likeable_id"=>fake()->randomElement(
                         \App\Models\User::pluck('id', 'id')->toArray()
