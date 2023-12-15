@@ -24,12 +24,14 @@ use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\CheckboxColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms\Components\Hidden;
+use Filament\Forms\Actions\CreateAction;
+use Filament\Resources\RelationManagers\RelationManager;
 
 class QuoteResource extends Resource
 {
     protected static ?string $model = Quote::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-bottom-center-text';
 
     public static function form(Form $form): Form
     {
@@ -57,7 +59,7 @@ class QuoteResource extends Resource
                     Select::make('user_id')
                         ->relationship('user', 'name')
                         ->searchable()
-                        ->required(),
+                        ->required()->default(auth()->id()),
 
                     Select::make('categories')
                         ->multiple()
@@ -75,7 +77,20 @@ class QuoteResource extends Resource
                     DateTimePicker::make('quoted_at')->nullable()->default(
                         now()
                     ),
+
                     // Hidden::make('user_id')->default(auth()->id())
+
+                    // CreateAction::make()
+                    //     ->mutateFormDataUsing(function (array $data): array {
+                    //         $data['user_id'] = auth()->id();
+
+                    // Forms\Components\Select::make('user_id')
+                    //         ->options(function (RelationManager $livewire): array {
+                    //             return $livewire->ownerRecord->stores()
+                    //                 ->pluck('name', 'id')
+                    //                 ->toArray();
+
+
 
                 ])->columns(2),
 
@@ -113,7 +128,7 @@ class QuoteResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            // $this->event->name
         ];
     }
 

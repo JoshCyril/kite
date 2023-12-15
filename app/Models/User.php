@@ -38,7 +38,8 @@ class User extends Authenticatable implements FilamentUser
 
     public function canAccessPanel(Panel $panel): bool
     {
-        return $this->can('view-admin', User::class);
+        return $this->isAdmin() || $this->isEditor() || $this->isUser();
+        // return $this->can('view-admin', User::class);
     }
 
     public function isAdmin(){
@@ -47,6 +48,10 @@ class User extends Authenticatable implements FilamentUser
 
     public function isEditor(){
         return $this->role === self::ROLE_EDITOR;
+    }
+
+    public function isUser(){
+        return $this->role === self::ROLE_USER;
     }
 
 
@@ -95,6 +100,11 @@ class User extends Authenticatable implements FilamentUser
     public function quotes(): HasMany
     {
         return $this->hasMany(Quote::class);
+    }
+
+    public function getQuote($query)
+    {
+        return $this->quotes();
     }
 
     public function comments(): HasMany

@@ -39,6 +39,7 @@
             <p class="mt-2 text-base font-light text-gray-700">
                 {{ $quote->getExcerpt()  }}
             </p> --}}
+            <a wire:navigate href="{{ route('user.show', $quote->user->name)}}">
             <div class="row-span-1 mt-4">
                 <div class="flex items-center flex-none py-1 text-sm article-meta">
                     <img class="mr-3 rounded-full w-7 h-7" src="{{ $quote->user->profile_photo_url }}" alt="$quote->userDetail->user->name">
@@ -46,7 +47,7 @@
                     <span class="text-xs text-gray-500">. {{ $quote->quoted_at->diffForHumans() }}</span>
                 </div>
             </div>
-
+            </a>
 
 
         </div>

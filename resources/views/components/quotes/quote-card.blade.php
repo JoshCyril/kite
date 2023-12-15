@@ -26,7 +26,7 @@
           </a>
 
           <div>
-            <a href="/" aria-label="Author" title="Author" class="font-semibold text-gray-800 transition-colors duration-200 hover:text-deep-purple-accent-400">
+            <a wire:navigate href="{{ route('user.show', $quote->user->name)}}" aria-label="Author" title="Author" class="font-semibold text-gray-800 transition-colors duration-200 hover:text-deep-purple-accent-400">
               {{ $quote->user->name }}
             </a>
             <p class="text-sm font-medium leading-4 text-gray-600">{{ $quote->user->userDetail->user_name }}</p>
