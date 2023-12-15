@@ -11,18 +11,6 @@ A new site to fly your `quotes` through the web.
 >
 > laravel PHP | Livewire | Tailwind CSS | Breeze
 
-## Models
 
-- categories
-- category_quote
-- comments
-- events
-- images
-- quotes
-- user_details
-- users
+![image](https://github.com/JoshCyril/kite/assets/43432240/5d916a48-00b4-4874-bbbc-793fac79042c)
 
-![DB UML](https://i.imgur.com/vWAE2Ka.png)
-
-Planned UML diagram ![Draw.io](http://draw.io/)
-![Draw io](https://i.imgur.com/YCefbgc.png)
