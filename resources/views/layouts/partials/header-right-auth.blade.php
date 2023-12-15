@@ -18,8 +18,17 @@
                     </button>
                 </div> --}}
 
+
+
                 <button class="flex items-center pb-2 mt-5">
                         {{-- <a href="" aria-label="User" title="User" class="mr-3"> --}}
+                    @can('view-admin',App\Models\User::class)
+                        <div class="mr-5">
+                            <x-nav-link :navigate='false' :index="0" href="{{ route('filament.admin.auth.login') }}" :active="request()->routeIs('filament.admin.auth.login')">
+                                {{ __('View Admin') }}
+                            </x-nav-link>
+                        </div>
+                    @endcan
                     <span>
                         <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" class="object-cover w-10 h-10 mr-3 rounded-full shadow-sm" />
                     </span>
@@ -55,6 +64,11 @@
             <x-dropdown-link wire:navigate href="{{ route('profile.show') }}">
                 {{ __('Profile') }}
             </x-dropdown-link>
+
+            {{-- <x-dropdown-link wire:navigate href="{{ route('filament.admin.auth.login') }}">
+                {{ __('Admin') }}
+
+            </x-dropdown-link> --}}
 
             {{-- <x-dropdown-link wire:navigate href="{{ route('admin') }}">
                 {{ __('Dashboard') }}

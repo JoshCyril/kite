@@ -19,7 +19,6 @@ class UserDetailFactory extends Factory
 
         return [
             'user_name' => '@' . fake()->unique()->userName(), // @testuser
-            'is_admin' => fake()->boolean(20),
             'user_id' => fake()->unique()
                 ->randomElement(
                     \App\Models\User::pluck('id', 'id')->toArray()

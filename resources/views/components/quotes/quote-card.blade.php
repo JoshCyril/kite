@@ -14,7 +14,7 @@
               </p>
 
               <a wire:navigate href="{{ route('quotes.show', $quote->slug)}}" aria-label="Article" title="Jingle Bells"
-                class="inline-block mb-5 font-serif text-2xl font-black text-gray-400 transition-colors duration-200 hover:text-deep-purple-accent-400">
+                class="inline-block mb-5 font-serif text-2xl font-black text-gray-500 transition-colors duration-200 hover:text-deep-purple-accent-400">
                 <span class="text-3xl text-gray-200 font-">"</span> {{ $quote->content }}
               </a>
         </div>

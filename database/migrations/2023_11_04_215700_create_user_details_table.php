@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->string('user_name', 50)->unique();
-            $table->boolean('is_admin');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')
