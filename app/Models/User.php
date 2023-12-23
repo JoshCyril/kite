@@ -117,11 +117,11 @@ class User extends Authenticatable implements FilamentUser
         return $this->morphToMany(Like::class, 'likeable');
     }
 
-    public function hasLiked(Quote $quote)
-    {
+    // public function hasLiked(Quote $quote)
+    // {
 
-        return $this->likes()->where('likeable_id', $quote->id)
-                    ->where('likeable_type', 'App\Models\Quote')
-                    ->exists();
-    }
+    //     return $this->likes()->where('likeable_id', $quote->id)
+    //                 ->where('likeable_type', 'App\Models\Quote')
+    //                 ->exists();
+    // }
 }

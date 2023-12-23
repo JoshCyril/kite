@@ -47,29 +47,29 @@ class LikeButton extends Component
         // $l->name = "I cant"
         // $q->likes()->save($l)
 
-        $tags = Likeable::with(['likeable'])->get();
-        $tags->map(function ($tag) {
-        return [
-            'id' => $tag->taggable->id,
-            'title' => $tag->taggable->type
-        ];
-        });
+        // $tags = Likeable::with(['likeable'])->get();
+        // $tags->map(function ($tag) {
+        // return [
+        //     'id' => $tag->taggable->id,
+        //     'title' => $tag->taggable->type
+        // ];
+        // });
 
-        dd($tags);
+        // dd($tags);
 
-        $s = DB::table('likeables')
-            ->where('likeable_id', $this->quote->id)
-            ->where('likeable_type', 'App\Models\Quote');
-
-
+        // $s = DB::table('likeables')
+        //     ->where('likeable_id', $this->quote->id)
+        //     ->where('likeable_type', 'App\Models\Quote');
 
 
-        if ($user->hasLiked($this->quote)) {
-            $user->likes()->detach($this->quote);
-            return;
-        }
 
-        $user->likes()->attach($this->quote);
+
+        // if ($user->hasLiked($this->quote)) {
+        //     $user->likes()->detach($this->quote);
+        //     return;
+        // }
+
+        // $user->likes()->attach($this->quote);
     }
 
     public function render()
